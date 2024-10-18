@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Link Button with Auto Click and Refresh</title>
+    <script>
+        // List of links for both buttons
+        const links1 = [
+            "https://link1.com",
+            "https://link2.com",
+            "https://link3.com",
+            "https://link4.com"
+        ];
+
+        const links2 = [
+            "https://link1-2.com",
+            "https://link2-2.com",
+            "https://link3-2.com",
+            "https://link4-2.com"
+        ];
+
+
+	const links3 = [
+            "https://link1-3.com",
+            "https://link2-3.com",
+            "https://link3-3.com",
+            "https://link4-3.com"
+        ];
+
+
+        function getRandomLink(links) {
+            // Select a random link from the given array
+            return links[Math.floor(Math.random() * links.length)];
+        }
+
+        function setRandomLink(buttonId, links) {
+            // Get the button element
+            const linkElement = document.getElementById(buttonId);
+
+            // Set its href and text to a random link
+            const randomLink = getRandomLink(links);
+            linkElement.href = randomLink;
+            linkElement.textContent = `Go to ${randomLink}`;
+        }
+
+        function autoClickRandomButton() {
+            // Randomly select between the two button IDs
+            const buttonIds = ['randomLink', 'randomLink2', 'randomLink3'];
+            const randomButtonId = buttonIds[Math.floor(Math.random() * buttonIds.length)];
+
+            // Auto-click the selected button after 3 seconds
+            setTimeout(() => {
+                document.getElementById(randomButtonId).click();
+            }, 3000); // 3 seconds delay
+        }
+
+        function refreshAfterRandomTime() {
+            // Generate a random time between 10 and 30 seconds (in milliseconds)
+            const randomTime = Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000;
+            console.log(`Page will refresh in ${randomTime / 1000} seconds`);
+
+            // Refresh the page after the random interval
+            setTimeout(() => {
+                location.reload();
+            }, randomTime);
+        }
+
+        // Execute on page load
+        window.onload = () => {
+            // Set random links and auto-click for both buttons
+            setRandomLink('randomLink', links1);
+            setRandomLink('randomLink2', links2);
+            setRandomLink('randomLink3', links3);
+            
+            // Randomly auto-click one of the two buttons
+            autoClickRandomButton();
+
+            // Schedule the page refresh
+            refreshAfterRandomTime();
+        };
+    </script>
+</head>
+<body>
+    <h1>Random First Link Button</h1>
+    <a id="randomLink" href="#" target="_blank" 
+       style="padding: 10px 20px; background-color: #4CAF50; color: white; 
+              text-decoration: none; border-radius: 5px;">
+        First Link will appear here
+    </a>
+
+    <h1>Random Second Link Button</h1>
+    <a id="randomLink2" href="#" target="_blank" 
+       style="padding: 10px 20px; background-color: #4CAF50; color: white; 
+              text-decoration: none; border-radius: 5px;">
+        Second Link will appear here
+    </a>
+
+    <h1>Random Treti Link Button</h1>
+    <a id="randomLink3" href="#" target="_blank" 
+       style="padding: 10px 20px; background-color: #4CAF50; color: white; 
+              text-decoration: none; border-radius: 5px;">
+        Treti Link will appear here
+    </a>
+</body>
+</html>
